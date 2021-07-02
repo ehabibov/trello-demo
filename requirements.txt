@@ -1,0 +1,5 @@
+requests==2.25.1
+selenium==3.141.0
+pytest==6.2.4
+databind==0.3.1
+dataclasses==0.6
