@@ -91,8 +91,5 @@ class MyBoardResponseBinding(BoardResponseBinding):
 
 
 @datamodel
-class BoardsResponseBinding:
-    List: List[BoardResponseBinding]
-
-
-
+class BoardRequestBinding:
+    name: str = None

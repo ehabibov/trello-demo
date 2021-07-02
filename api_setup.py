@@ -1,31 +1,33 @@
-from typing import List
-
 import requests
-import json
-from bindings.boards import BoardResponseBinding
-from databind.json import from_json
-from pprint import pprint as pp
+from typing import Type, TypeVar
+from databind.json import from_json, to_json
 from main import Main, TokenAuth
 
 
-class Api(Main):
+class BaseApi(Main):
 
-    def get_boards_endpoint(self):
-        root_url = self.endpoints.root_endpoint
-        boards_url = self.endpoints.boards_endpoint
-        return root_url + boards_url
+    REQ = TypeVar('REQ')
+    RESP = TypeVar('RESP')
 
-    def get_boards(self):
-        endpoint = self.get_boards_endpoint()
-        response = requests.get(endpoint, auth=TokenAuth(self.creds_tuple.apiKey, self.creds_tuple.apiToken))
-        boards_raw = json.loads(response.content)
-        boards_resp: List[BoardResponseBinding] = from_json(List[BoardResponseBinding], boards_raw)
-        return boards_resp
+    def get(self, endpoint, resp_binding: Type[REQ]) -> REQ:
+        response_raw = requests.get(endpoint, auth=TokenAuth(*self.api_credentials_tuple))
+        response_obj: resp_binding = from_json(resp_binding, response_raw.json())
+        return response_obj
 
-    def make_get(self, endpoint, params, headers):
-        return requests.get(endpoint, auth=TokenAuth(self.creds_tuple.apiKey, self.creds_tuple.apiToken))
+    def post(self, endpoint, req_binding: Type[REQ], **kwargs) -> RESP:
+        resp_binding = kwargs.get("resp_binding")
+        if resp_binding is None:
+            return self._post_no_resp(endpoint, req_binding)
+        else:
+            return self._post(endpoint, req_binding, resp_binding)
 
+    def _post_no_resp(self, endpoint, req_binding: Type[REQ]):
+        payload = to_json(req_binding)
+        response = requests.post(endpoint, data=payload, auth=TokenAuth(*self.api_credentials_tuple))
+        return response
 
-if __name__ == '__main__':
-    a = Api().get_boards()
-    pp(a)
+    def _post(self, endpoint, req_binding: Type[REQ], resp_binding: Type[RESP]) -> RESP:
+        payload = to_json(req_binding)
+        response_raw = requests.post(endpoint, data=payload, auth=TokenAuth(*self.api_credentials_tuple))
+        response_obj: resp_binding = from_json(resp_binding, response_raw.json())
+        return response_obj

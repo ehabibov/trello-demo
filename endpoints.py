@@ -8,19 +8,24 @@ class Endpoints:
         endpoints = configparser.ConfigParser()
         endpoints_path = definitions.ENDPOINTS_CONFIG_PATH
         endpoints.read(endpoints_path)
-        self._rootEndpoint = endpoints['Endpoints']['root']
-        self._boardsEndpoint = endpoints['Endpoints']['boardsEndpoint']
-        self._boardEndpoint = endpoints['Endpoints']['boardEndpoint']
+        self._root_endpoint = endpoints['Endpoints']['root']
+        self._my_boards_endpoint = endpoints['Boards']['myBoardsEndpoint']
+        self._board_endpoint = endpoints['Boards']['boardEndpoint']
+        self._boards_endpoint = endpoints['Boards']['boardsEndpoint']
 
     @property
     def root_endpoint(self):
-        return self._rootEndpoint
+        return self._root_endpoint
 
     @property
-    def boards_endpoint(self):
-        return self._boardsEndpoint
+    def my_boards_endpoint(self):
+        return self._my_boards_endpoint
 
     @property
     def board_endpoint(self):
-        return self._boardEndpoint
+        return self._board_endpoint
+
+    @property
+    def boards_endpoint(self):
+        return self._boards_endpoint
 
