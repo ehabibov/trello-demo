@@ -5,13 +5,13 @@ import definitions
 class Credentials:
 
     def __init__(self):
-        creds_path = definitions.OAUTH_CONFIG_PATH
-        creds = configparser.ConfigParser()
-        creds.read(creds_path)
-        self._api_key = creds['Credentials']['apiKey']
-        self._api_token = creds['Credentials']['apiToken']
-        self._email = creds['Credentials']['email']
-        self._password = creds['Credentials']['password']
+        credentials_path = definitions.OAUTH_CONFIG_PATH
+        credentials = configparser.ConfigParser()
+        credentials.read(credentials_path)
+        self._api_key = credentials['Credentials']['apiKey']
+        self._api_token = credentials['Credentials']['apiToken']
+        self._email = credentials['Credentials']['email']
+        self._password = credentials['Credentials']['password']
 
     @property
     def api_key(self):

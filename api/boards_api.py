@@ -1,18 +1,18 @@
 from typing import List
 from api.base_api import BaseApi
-from bindings.boards import BoardResponseBinding, BoardRequestBinding
+from bindings.boards_bindings import BoardResponseBinding, BoardRequestBinding
 
 
-class ApiBoards(BaseApi):
+class BoardsApi(BaseApi):
 
     def get_my_boards_endpoint(self):
-        return self.endpoints.root_endpoint + self.endpoints.my_boards_endpoint
+        return self.boardEndpoints.root_endpoint + self.boardEndpoints.my_boards_endpoint
 
     def get_boards_endpoint(self):
-        return self.endpoints.root_endpoint + self.endpoints.boards_endpoint
+        return self.boardEndpoints.root_endpoint + self.boardEndpoints.boards_endpoint
 
     def get_board_endpoint(self, board_id):
-        return self.endpoints.root_endpoint + self.endpoints.board_endpoint.replace("{id}", board_id)
+        return self.boardEndpoints.root_endpoint + self.boardEndpoints.board_endpoint.replace("{id}", board_id)
 
     def get_boards(self):
         resp_binding = List[BoardResponseBinding]
