@@ -1,5 +1,5 @@
 from typing import List
-from api_setup import BaseApi
+from api.base_api import BaseApi
 from bindings.boards import BoardResponseBinding, BoardRequestBinding
 
 

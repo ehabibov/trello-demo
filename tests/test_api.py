@@ -1,4 +1,4 @@
-from api_boards import ApiBoards
+from api.boards_api import ApiBoards
 from bindings.boards import BoardRequestBinding
 
 

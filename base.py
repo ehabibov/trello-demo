@@ -1,6 +1,6 @@
 from collections import namedtuple
-from credentials import Credentials
-from endpoints import Endpoints
+from properties.credentials import Credentials
+from properties.endpoints import Endpoints
 
 
 class Base:
