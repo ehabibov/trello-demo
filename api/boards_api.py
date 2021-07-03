@@ -3,31 +3,25 @@ from api.base_api import BaseApi
 from bindings.boards_bindings import BoardResponseBinding, BoardRequestBinding
 
 
-class BoardsApi(BaseApi):
+class BoardApi(BaseApi):
 
-    def get_my_boards_endpoint(self):
-        return self.boardEndpoints.root_endpoint + self.boardEndpoints.my_boards_endpoint
+    def _get_my_boards_endpoint(self):
+        return self.board_endpoints_holder.my_boards_endpoint
 
-    def get_boards_endpoint(self):
-        return self.boardEndpoints.root_endpoint + self.boardEndpoints.boards_endpoint
+    def _get_boards_endpoint(self):
+        return self.board_endpoints_holder.boards_endpoint
 
-    def get_board_endpoint(self, board_id):
-        return self.boardEndpoints.root_endpoint + self.boardEndpoints.board_endpoint.replace("{id}", board_id)
+    def _get_board_endpoint(self, board_id):
+        return self.board_endpoints_holder.board_endpoint.replace("{id}", board_id)
 
     def get_boards(self):
-        resp_binding = List[BoardResponseBinding]
-        endpoint = self.get_my_boards_endpoint()
-        boards_obj = self.get(endpoint, resp_binding)
-        return boards_obj
+        return self.get(self._get_my_boards_endpoint(), List[BoardResponseBinding])
 
     def create_board(self, req: BoardRequestBinding):
-        endpoint = self.get_boards_endpoint()
-        response = self.post(endpoint, req)
-        return response
+        return self.post(self._get_boards_endpoint(), req)
 
     def delete_all_boards(self):
         [self.delete_board(board.id) for board in self.get_boards()]
 
     def delete_board(self, board_id):
-        endpoint = self.get_board_endpoint(board_id)
-        return self.delete(endpoint)
+        return self.delete(self._get_board_endpoint(board_id))

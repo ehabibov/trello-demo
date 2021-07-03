@@ -5,18 +5,18 @@ class BoardEndpoints(BaseEndpoint):
 
     def __init__(self):
         super().__init__()
-        self._my_boards_endpoint = self.endpoints['Boards']['myBoardsEndpoint']
-        self._board_endpoint = self.endpoints['Boards']['boardEndpoint']
-        self._boards_endpoint = self.endpoints['Boards']['boardsEndpoint']
+        self._my_boards_endpoint = self.endpoints['Boards']['myBoards']
+        self._board_endpoint = self.endpoints['Boards']['board']
+        self._boards_endpoint = self.endpoints['Boards']['boards']
 
     @property
     def my_boards_endpoint(self):
-        return self._my_boards_endpoint
+        return self.root_endpoint + self._my_boards_endpoint
 
     @property
     def board_endpoint(self):
-        return self._board_endpoint
+        return self.root_endpoint + self._board_endpoint
 
     @property
     def boards_endpoint(self):
-        return self._boards_endpoint
+        return self.root_endpoint + self._boards_endpoint
