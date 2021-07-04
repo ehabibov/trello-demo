@@ -12,14 +12,13 @@ class BaseApi(Base):
     REQ = TypeVar('REQ')
     RESP = TypeVar('RESP')
 
-    def get(self, endpoint, resp_binding: Type[REQ]) -> REQ:
+    def get(self, endpoint, resp_binding: Type[RESP]) -> RESP:
         response = requests.get(endpoint, auth=TokenAuth(*self.api_keys_tuple))
         self._print_resp(response)
-        response_obj: resp_binding = from_json(resp_binding, response.json())
+        response_obj = from_json(resp_binding, response.json())
         return response_obj
 
-    def post(self, endpoint, req_binding: Type[REQ], **kwargs) -> RESP:
-        resp_binding = kwargs.get("resp_binding")
+    def post(self, endpoint, req_binding: Type[REQ], resp_binding: Type[RESP] = None) -> RESP:
         if resp_binding is None:
             return self._post_no_resp(endpoint, req_binding)
         else:
@@ -35,7 +34,7 @@ class BaseApi(Base):
         payload = to_json(req_binding)
         response = requests.post(endpoint, data=payload, auth=TokenAuth(*self.api_keys_tuple))
         self._print_resp(response)
-        response_obj: resp_binding = from_json(resp_binding, response.json())
+        response_obj = from_json(resp_binding, response.json())
         return response_obj
 
     def delete(self, endpoint):
