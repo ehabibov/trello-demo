@@ -43,3 +43,13 @@ class BoardApi(BaseApi):
             if lst.name == list_name:
                 return lst
 
+    def get_list_from_board_id_by_name(self, board_id, list_name):
+        for lst in self.get_lists_from_board(board_id):
+            if lst.name == list_name:
+                return lst
+
+    def get_list_from_board_name_by_name(self, board_name, list_name):
+        board = self.get_board_by_name(board_name)
+        for lst in self.get_lists_from_board(board.id):
+            if lst.name == list_name:
+                return lst

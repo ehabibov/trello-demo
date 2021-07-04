@@ -30,11 +30,11 @@ class ListApi(BaseApi):
     def get_cards_by_board_and_list_name(self, board_name, list_name):
         board_api = BoardApi()
         board = board_api.get_board_by_name(board_name)
-        lst = board_api.get_list_from_board(board.id, list_name)
+        lst = board_api.get_list_from_board_id_by_name(board.id, list_name)
         return self.get_list_cards(lst.id)
 
-    def get_card_by_board_list_card_name(self, board_name, list_name, card_nme):
+    def get_card_by_board_list_card_name(self, board_name, list_name, card_name):
         board_api = BoardApi()
         board = board_api.get_board_by_name(board_name)
-        lst = board_api.get_list_from_board(board.id, list_name)
-        return self.get_card_by_list_id_and_card_name(lst.id, card_nme)
+        lst = board_api.get_list_from_board_id_by_name(board.id, list_name)
+        return self.get_card_by_list_id_and_card_name(lst.id, card_name)

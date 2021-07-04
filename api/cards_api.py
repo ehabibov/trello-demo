@@ -22,6 +22,9 @@ class CardApi(BaseApi):
     def create_new_card_in_list(self, req: CardsRequestBinding):
         return self.post(self._get_cards_endpoint(), req, CardResponseBinding)
 
+    def get_card_by_id(self, card_id):
+        return  self.get(self._get_card_endpoint(card_id), CardResponseBinding)
+
     def add_comment_to_card(self, card_id, req: CardCommentRequestBinding):
         return self.post(self._get_card_comment_endpoint(card_id), req)
 
