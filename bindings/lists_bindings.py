@@ -13,6 +13,16 @@ class CreatedListResponseBinding:
 
 
 @datamodel
+class ListResponseBinding:
+    id: str
+    name: str
+    closed: bool
+    pos: int
+    idBoard: str
+    subscribed: bool
+
+
+@datamodel
 class ListCardsRequestBinding:
     id: str
 

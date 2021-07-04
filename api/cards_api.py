@@ -18,3 +18,6 @@ class CardApi(BaseApi):
 
     def add_comment_to_card(self, card_id, req: CardCommentRequestBinding):
         return self.post(self._get_card_comment_endpoint(card_id), req)
+
+    def delete_card(self, card_id):
+        return self.delete(self._get_card_endpoint(card_id))

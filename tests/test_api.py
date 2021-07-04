@@ -18,9 +18,15 @@ def test_create_board():
 
 
 def test_create_list():
-    board = BoardApi().get_boards().pop()
-    list_req = ListRequestBinding().with_board_id(board.id).with_name("MyList")
-    new_list = ListApi().create_list(list_req)
+    board_api = BoardApi()
+    list_api = ListApi()
+    card_api = CardApi()
+    
+    board = board_api.get_boards().pop()
+    list_req = ListRequestBinding()\
+        .with_board_id(board.id).with_name("MyList")
+    new_list = list_api.create_list(list_req)
+
     cards_obj1 = CardsRequestBinding()\
         .with_idlist(new_list.id).with_name("Card1").with_desc("Desc1")
     cards_obj2 = CardsRequestBinding()\
@@ -28,8 +34,14 @@ def test_create_list():
     cards_obj3 = CardsRequestBinding() \
         .with_idlist(new_list.id).with_name("Card3").with_desc("Desc3")
 
-    new_card1 = CardApi().create_new_card_in_list(cards_obj1)
-    new_card2 = CardApi().create_new_card_in_list(cards_obj2)
-    new_card3 = CardApi().create_new_card_in_list(cards_obj3)
+    new_card1 = card_api.create_new_card_in_list(cards_obj1)
+    new_card2 = card_api.create_new_card_in_list(cards_obj2)
+    new_card3 = card_api.create_new_card_in_list(cards_obj3)
 
     print(new_card1, new_card2, new_card3)
+
+    cards = list_api.get_list_cards(new_list.id)
+    assert len(cards) == 3
+
+    card = list_api.get_card_by_board_list_card_name("BoardOne", "MyList", "Card3")
+    card_api.delete_card(card.id)
