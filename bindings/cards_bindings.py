@@ -24,6 +24,18 @@ class CardsRequestBinding:
     name: str = None
     desc: str = None
 
+    def with_idlist(self, id_list):
+        self.idList = id_list
+        return self
+
+    def with_name(self, name):
+        self.name = name
+        return self
+
+    def with_desc(self, desc):
+        self.desc = desc
+        return self
+
 
 @datamodel
 class CardCommentRequestBinding:

@@ -3,12 +3,6 @@ from databind.core import datamodel
 
 
 @datamodel
-class ListRequestBinding:
-    name: str = None
-    idBoard: str = None
-
-
-@datamodel
 class CreatedListResponseBinding:
     id: str
     name: str
@@ -21,3 +15,17 @@ class CreatedListResponseBinding:
 @datamodel
 class ListCardsRequestBinding:
     id: str
+
+
+@datamodel
+class ListRequestBinding:
+    name: str = None
+    idBoard: str = None
+
+    def with_board_id(self, id_board):
+        self.idBoard = id_board
+        return self
+
+    def with_name(self, name):
+        self.name = name
+        return self
