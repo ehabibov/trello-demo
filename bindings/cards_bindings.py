@@ -16,3 +16,15 @@ class CardResponseBinding:
     name: str
     desc: str
     labels: List[Label] = None
+
+
+@datamodel
+class CardsRequestBinding:
+    idList: str = None
+    name: str = None
+    desc: str = None
+
+
+@datamodel
+class CardCommentRequestBinding:
+    text: str = None

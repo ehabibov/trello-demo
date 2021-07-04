@@ -1,7 +1,7 @@
 from properties.base_endpoints import BaseEndpoint
 
 
-class CardsEndpoints(BaseEndpoint):
+class CardEndpoints(BaseEndpoint):
 
     def __init__(self):
         super().__init__()
