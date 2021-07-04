@@ -1,5 +1,7 @@
 requests==2.25.1
 selenium==3.141.0
+webdriver-manager==3.4.2
 pytest==6.2.4
 databind==0.3.1
 dataclasses==0.6
+configparser==5.0.2
