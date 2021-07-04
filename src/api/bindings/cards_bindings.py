@@ -1,6 +1,6 @@
 from typing import List
 from databind.core import datamodel
-from api.labels import Label
+from src.api.labels import Label
 
 
 @datamodel

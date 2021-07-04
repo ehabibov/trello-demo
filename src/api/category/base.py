@@ -1,8 +1,8 @@
 from collections import namedtuple
-from properties.credentials import Credentials
-from properties.endpoints_boards import BoardEndpoints
-from properties.endpoints_cards import CardEndpoints
-from properties.endpoints_lists import ListEndpoints
+from src.credentials import Credentials
+from src.api.properties.endpoints_boards import BoardEndpoints
+from src.api.properties.endpoints_cards import CardEndpoints
+from src.api.properties.endpoints_lists import ListEndpoints
 
 
 class Base:

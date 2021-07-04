@@ -4,7 +4,7 @@ from typing import Type, TypeVar
 from databind.json import from_json, to_json
 from pprint import pformat as pf
 from requests.auth import AuthBase
-from base import Base
+from src.api.category.base import Base
 
 
 class BaseApi(Base):

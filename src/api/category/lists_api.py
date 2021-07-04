@@ -1,8 +1,8 @@
 from typing import List
-from api.base_api import BaseApi
-from api.boards_api import BoardApi
-from bindings.cards_bindings import CardResponseBinding
-from bindings.lists_bindings import ListRequestBinding, CreatedListResponseBinding
+from src.api.category.base_api import BaseApi
+from src.api.category.boards_api import BoardApi
+from src.api.bindings.cards_bindings import CardResponseBinding
+from src.api.bindings.lists_bindings import ListRequestBinding, CreatedListResponseBinding
 
 
 class ListApi(BaseApi):

@@ -1,7 +1,7 @@
 from typing import List
-from api.base_api import BaseApi
-from bindings.boards_bindings import BoardResponseBinding, BoardRequestBinding
-from bindings.lists_bindings import ListResponseBinding
+from src.api.category.base_api import BaseApi
+from src.api.bindings.boards_bindings import BoardResponseBinding, BoardRequestBinding
+from src.api.bindings.lists_bindings import ListResponseBinding
 
 
 class BoardApi(BaseApi):

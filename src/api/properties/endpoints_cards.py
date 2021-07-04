@@ -1,4 +1,4 @@
-from properties.base_endpoints import BaseEndpoint
+from src.api.properties.base_endpoints import BaseEndpoint
 
 
 class CardEndpoints(BaseEndpoint):

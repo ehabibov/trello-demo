@@ -1,11 +1,11 @@
 import pytest
-from api.boards_api import BoardApi
-from api.cards_api import CardApi
-from api.labels import Label
-from api.lists_api import ListApi
-from bindings.boards_bindings import BoardRequestBinding
-from bindings.cards_bindings import CardsRequestBinding, CardLabelRequestBinding, CardCommentRequestBinding
-from bindings.lists_bindings import ListRequestBinding
+from src.api.category.boards_api import BoardApi
+from src.api.category.cards_api import CardApi
+from src.api.category.lists_api import ListApi
+from src.api.bindings.boards_bindings import BoardRequestBinding
+from src.api.bindings.cards_bindings import CardsRequestBinding, CardLabelRequestBinding, CardCommentRequestBinding
+from src.api.bindings.lists_bindings import ListRequestBinding
+from src.api.labels import Label
 
 
 def test_delete_all_boards():

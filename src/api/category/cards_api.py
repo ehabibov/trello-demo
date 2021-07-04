@@ -1,5 +1,5 @@
-from api.base_api import BaseApi
-from bindings.cards_bindings import *
+from src.api.category.base_api import BaseApi
+from src.api.bindings.cards_bindings import *
 
 
 class CardApi(BaseApi):
