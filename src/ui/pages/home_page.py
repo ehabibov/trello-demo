@@ -5,4 +5,4 @@ from src.ui.pages.base_page import BasePage
 class HomePage(BasePage):
 
     def on_page(self):
-        return self.find_element(HomePageLocators.HOME_BUTTON)
+        return self.find_element(HomePageLocators.home_button())
