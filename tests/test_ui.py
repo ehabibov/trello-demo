@@ -5,6 +5,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 from src.credentials import Credentials
 from src.ui.driver_listeners import DriverListener
+from src.ui.pages.board_page import BoardPage
 from src.ui.pages.home_page import HomePage
 from src.ui.pages.login_page import LoginPage
 
@@ -35,16 +36,14 @@ def login(browser, credentials):
 def test_cards_count(login, browser):
     home_page = HomePage(browser)
     home_page.go_to_board("BoardOne")
-    cards = home_page.get_cards_on_list("MyList")
+    board_page = BoardPage(browser)
+    cards = board_page.get_cards_in_list("MyList")
     assert len(cards) == 2
     for card in cards:
-        assert home_page.get_card_name(card).text in ['Card1', 'Card2']
+        assert board_page.get_card_name(card).text in ['Card1', 'Card2']
 
 
 def test_cards_with_comment(login, browser):
     home_page = HomePage(browser)
     home_page.go_to_board("BoardOne")
-    cards = home_page.get_cards_on_list("MyList")
-    assert len(cards) == 2
-    for card in cards:
-        assert home_page.get_card_name(card).text in ['Card1', 'Card2']
+    board_page = BoardPage(browser)
