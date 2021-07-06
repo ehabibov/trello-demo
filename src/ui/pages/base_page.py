@@ -1,4 +1,5 @@
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -29,6 +30,10 @@ class BasePage:
 
     def find_elements_in_element(self, element, locator):
         return element.find_elements(locator[0], locator[1])
+
+    def mouse_over(self, element):
+        hover = ActionChains(self.driver).move_to_element(element)
+        hover.perform()
 
     def to_site(self):
         return self.driver.get(self.base_url)
