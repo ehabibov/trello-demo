@@ -15,7 +15,10 @@ class BoardPageLocators(BaseLocators):
                                            "/ancestor::div[contains(@class, 'list')]//a[contains(@class, 'list-card')]"]
     __CARDS_IN_NAMED_LIST_WITH_NAME = [By.XPATH, "//textarea[contains(@class, 'list-header-name') and contains(text(), '%s')]"
                                                  "/ancestor::div[contains(@class, 'list')]"
-                                                 "//span[contains(@class,'list-card-title') and contains(text(), '%s')]"]
+                                                 "//span[contains(@class,'list-card-title') and contains(text(), '%s')]"
+                                                 "/ancestor::a[contains(@class, 'list-card')]"]
+    __CARD_WITH_NAME = [By.XPATH, "//span[contains(@class,'list-card-title') and contains(text(), '%s')]"
+                                  "/ancestor::a[contains(@class, 'list_card')]"]
 
     @classmethod
     def list(cls):
@@ -30,13 +33,17 @@ class BoardPageLocators(BaseLocators):
         return cls.__CARD_NAME
 
     @classmethod
-    def list_by_name(cls, list_name):
-        return cls.upd_loc(cls.__LIST_BY_NAME, [list_name])
-
-    @classmethod
     def comment_icon(cls):
         return cls.__CARD_COMMENT_ICON
 
     @classmethod
+    def list_by_name(cls, list_name):
+        return cls.upd_loc(cls.__LIST_BY_NAME, [list_name])
+
+    @classmethod
     def cards_in_list_by_name(cls, list_name):
         return cls.upd_loc(cls.__CARDS_IN_LIST_WITH_NAME, [list_name])
+
+    @classmethod
+    def card_in_list_with_name(cls, list_name, card_name):
+        return cls.upd_loc(cls.__CARDS_IN_NAMED_LIST_WITH_NAME, [list_name, card_name])

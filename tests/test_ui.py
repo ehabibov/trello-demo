@@ -6,6 +6,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from src.credentials import Credentials
 from src.ui.driver_listeners import DriverListener
 from src.ui.pages.board_page import BoardPage
+from src.ui.pages.card_page import CardPage
 from src.ui.pages.home_page import HomePage
 from src.ui.pages.login_page import LoginPage
 
@@ -55,3 +56,14 @@ def test_cards_with_comment(login, browser):
         if tmp is not None:
             cards_with_comment.append(tmp)
     assert len(cards_with_comment) == 1
+
+
+def test_comment_on_commented_card(login, browser):
+    home_page = HomePage(browser)
+    home_page.go_to_board("BoardOne")
+    board_page = BoardPage(browser)
+    board_page.go_to_card("MyList", "Card1")
+    card_page = CardPage(browser)
+    card_page.leave_comment("Test comment")
+    comments = card_page.get_comments("Test comment")
+    assert len(comments) == 1
