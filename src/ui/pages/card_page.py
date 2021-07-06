@@ -6,12 +6,10 @@ class CardPage(BasePage):
 
     def leave_comment(self, comment):
         comment_field = self.find_element(CardPageLocators.comment_field())
-        # click performed successfully 1/10 times
         comment_field.click()
         comment_field.send_keys(comment)
         self.wait_for_element_to_be_enabled(CardPageLocators.save_comment_button())
         save_button = self.find_element(CardPageLocators.save_comment_button())
-        # click never performed well
         save_button.click()
 
     def get_comments(self, target_comment):

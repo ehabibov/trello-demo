@@ -58,7 +58,6 @@ def test_cards_with_comment(login, browser):
     assert len(cards_with_comment) == 1
 
 
-# fails as new comment on <textarea/> elem and save button are not interactable even from DevTools point of view
 def test_comment_on_commented_card(login, browser):
     home_page = HomePage(browser)
     home_page.go_to_board("BoardOne")
@@ -70,8 +69,6 @@ def test_comment_on_commented_card(login, browser):
     assert len(comments) == 1
 
 
-# fails for card edit required mouse_over which failing with EventFiringWebDriver (selenium bug)
-# try to fallback to standard WebDriver on browser() fixture
 def test_move_card_to_done(login, browser):
     home_page = HomePage(browser)
     home_page.go_to_board("BoardOne")

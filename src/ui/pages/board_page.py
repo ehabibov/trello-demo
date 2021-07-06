@@ -24,8 +24,7 @@ class BoardPage(BasePage):
         card.click()
 
     def move_card_to_list(self, from_list_name, to_list_name, card_name):
-        card = self.find_element(BoardPageLocators.card_in_list_with_name(from_list_name, card_name))
-        # mouseover fails with EventFiringWebdriver
+        card = self.find_wrapped_element(BoardPageLocators.card_in_list_with_name(from_list_name, card_name))
         self.mouse_over(card)
         edit_button = self.find_element(BoardPageLocators.card_in_list_with_name_edit_button(from_list_name, card_name))
         edit_button.click()

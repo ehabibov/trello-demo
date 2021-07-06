@@ -8,6 +8,7 @@ class BasePage:
 
     def __init__(self, driver):
         self.driver = driver
+        self.wrapped_driver = driver.wrapped_driver
         self.base_url = "https://trello.com/login"
 
     def find_element(self, locator, time=10):
@@ -22,6 +23,11 @@ class BasePage:
         return WebDriverWait(self.driver, time).until(EC.element_to_be_clickable(locator),
                                                       message=f"Can't find element by locator {locator}")
 
+    def find_wrapped_element(self, locator, time=10):
+        """fallback to standard WebElement due to self.mouse_over() bug"""
+        return WebDriverWait(self.wrapped_driver, time).until(EC.presence_of_element_located(locator),
+                                                      message=f"Can't find element by locator {locator}")
+
     def find_element_in_element(self, element, locator: list):
         try:
             return element.find_element(locator[0], locator[1])
@@ -32,8 +38,8 @@ class BasePage:
         return element.find_elements(locator[0], locator[1])
 
     def mouse_over(self, element):
-        hover = ActionChains(self.driver).move_to_element(element)
-        hover.perform()
+        """Fallback to standard WebDriver due effective defect https://github.com/SeleniumHQ/selenium/issues/6604"""
+        ActionChains(self.driver).move_to_element(element).perform()
 
     def to_site(self):
         return self.driver.get(self.base_url)

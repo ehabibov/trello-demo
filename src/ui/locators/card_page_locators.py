@@ -6,7 +6,7 @@ from src.ui.locators.base_locators import BaseLocators
 class CardPageLocators(BaseLocators):
 
     __COMMENT_FIELD = [By.CSS_SELECTOR, "textarea.comment-box-input.js-new-comment-input"]
-    __SAVE_COMMENT_BUTTON = [By.CSS_SELECTOR, "input[value='Save']"]
+    __SAVE_COMMENT_BUTTON = [By.XPATH, "//input[contains(@class, 'js-add-comment')]"]
     __COMMENT = [By.XPATH, "//div[contains(@class, 'js-list-actions')]//div[contains(@class, 'current-comment')]/p"]
 
     @classmethod
