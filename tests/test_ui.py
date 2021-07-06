@@ -24,18 +24,24 @@ def credentials():
     return {'email': Credentials().email, 'password': Credentials().password}
 
 
-def test_login(browser, credentials):
+@pytest.fixture
+def login(browser, credentials):
     login_page = LoginPage(browser)
     login_page.to_site()
     login_page.login(credentials.get('email'), credentials.get('password'))
     assert HomePage(browser).on_page() is not None
 
 
-def test_cards_count(browser, credentials):
-    login_page = LoginPage(browser)
-    login_page.to_site()
-    login_page.login(credentials.get('email'), credentials.get('password'))
-    assert HomePage(browser).on_page() is not None
+def test_cards_count(login, browser):
+    home_page = HomePage(browser)
+    home_page.go_to_board("BoardOne")
+    cards = home_page.get_cards_on_list("MyList")
+    assert len(cards) == 2
+    for card in cards:
+        assert home_page.get_card_name(card).text in ['Card1', 'Card2']
+
+
+def test_cards_with_comment(login, browser):
     home_page = HomePage(browser)
     home_page.go_to_board("BoardOne")
     cards = home_page.get_cards_on_list("MyList")
