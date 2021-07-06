@@ -16,8 +16,8 @@ Test files executed in natural order:
 ### Some notes
 This is my the very first test suite on Python. Before this task only requests library was a bit familiar to me and 
 selenium (java impl, not pythonic).  
-There are a lot of thing that could be better (logging, additional layers for objects/functions, syntax sugar) 
-and there are some things that I still do not understand fully (TypeVar, typed function return statement, static type checks).
+There are a lot of thing that could be better (additional layers for api/ui objects/functions, syntax sugar) 
+and there are some things that I still do not understand fully (TypeVar, typed function return statements, static type checks).
 
 Also, tests were implemented strictly to objectives without additional checks/bonus tasks as, again,
 Python/selenium/requests are new for me.
