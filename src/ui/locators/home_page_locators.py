@@ -14,7 +14,7 @@ class HomePageLocators(BaseLocators):
 
     @classmethod
     def board(cls, board_name):
-        return cls.upd_loc(cls.__BOARD, board_name)
+        return cls.upd_loc(cls.__BOARD, [board_name])
 
     @classmethod
     def board_header(cls):

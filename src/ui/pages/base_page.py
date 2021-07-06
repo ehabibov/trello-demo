@@ -1,3 +1,4 @@
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -17,7 +18,10 @@ class BasePage:
                                                       message=f"Can't find element by locator {locator}")
 
     def find_element_in_element(self, element, locator: list):
-        return element.find_element(locator[0], locator[1])
+        try:
+            return element.find_element(locator[0], locator[1])
+        except NoSuchElementException:
+            print(f"Element with locator {locator} not found")
 
     def find_elements_in_element(self, element, locator):
         return element.find_elements(locator[0], locator[1])

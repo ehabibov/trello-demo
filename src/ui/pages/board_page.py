@@ -9,3 +9,6 @@ class BoardPage(BasePage):
 
     def get_card_name(self, card_element):
         return self.find_element_in_element(card_element, BoardPageLocators.card_name())
+
+    def get_card_with_comment(self, card_element):
+        return self.find_element_in_element(card_element, BoardPageLocators.comment_icon())

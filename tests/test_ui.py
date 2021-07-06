@@ -15,7 +15,7 @@ def browser():
     driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
     ef_driver = EventFiringWebDriver(driver, DriverListener())
     ef_driver.maximize_window()
-    ef_driver.implicitly_wait(10)
+    ef_driver.implicitly_wait(5)
     yield ef_driver
     ef_driver.quit()
 
@@ -47,3 +47,11 @@ def test_cards_with_comment(login, browser):
     home_page = HomePage(browser)
     home_page.go_to_board("BoardOne")
     board_page = BoardPage(browser)
+    cards = board_page.get_cards_in_list("MyList")
+
+    cards_with_comment = []
+    for card in cards:
+        tmp = board_page.get_card_with_comment(card)
+        if tmp is not None:
+            cards_with_comment.append(tmp)
+    assert len(cards_with_comment) == 1

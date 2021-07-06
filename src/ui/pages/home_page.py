@@ -8,7 +8,6 @@ class HomePage(BasePage):
         return self.find_element(HomePageLocators.home_button())
 
     def go_to_board(self, board_name):
-        loc = HomePageLocators.board(board_name)
-        board = self.find_element(loc)
+        board = self.find_element(HomePageLocators.board(board_name))
         board.click()
         self.find_element(HomePageLocators.board_header())
