@@ -72,7 +72,7 @@ def test_comment_on_commented_card(login, browser):
 
 # fails for card edit required mouse_over which failing with EventFiringWebDriver (selenium bug)
 # try to fallback to standard WebDriver on browser() fixture
-def move_card_to_done(login, browser):
+def test_move_card_to_done(login, browser):
     home_page = HomePage(browser)
     home_page.go_to_board("BoardOne")
     board_page = BoardPage(browser)
